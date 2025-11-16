@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HydroCare | Gestion des Contrats</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashborad.css" />
+  <link rel="stylesheet" href="css/contrats.css" />
+  <script defer src="js/contrats.js"></script>
+</head>
+<body class="dash-body">
+  <div class="dash-layout">
+    <!-- Sidebar (identique à dashboard) -->
+    <aside class="dash-sidebar" aria-label="Navigation tableau de bord">
+      <div class="brand">
+        <div class="brand-icon">🌱</div>
+        <span class="brand-text">HydroCare</span>
+      </div>
+      <nav class="dash-nav">
+        <ul>
+          <li><a href="dashboard.html">📊 Dashboard</a></li>
+          <li><a href="contrats.html" class="active">📄 Contrats</a></li>
+          <li><a href="parametres.html">⚙️ Paramètres</a></li>
+          <li><a href="chat.html">💬 Assistant </a></li>
+          <li><a href="detection.html" class="active">🩺 Détection</a></li>
+        </ul>
+      </nav>
+      <button id="logoutBtn" class="logout-btn" aria-label="Déconnexion">
+        <span class="logout-icon">⏻</span>
+        <span class="logout-text">Déconnexion</span>
+      </button>
+    </aside>
+
+    <!-- Contenu principal -->
+    <main class="dash-main" id="dashMain" tabindex="-1">
+      <header class="dash-topbar">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Afficher / masquer menu">
+          <span class="toggle-bar"></span>
+          <span class="toggle-bar"></span>
+          <span class="toggle-bar"></span>
+        </button>
+        <h1 class="dash-title">Gestion des Contrats</h1>
+        <div class="user-badge" id="userBadge">
+          <span class="user-avatar">👤</span>
+          <span class="user-name"></span>
+        </div>
+      </header>
+
+      <section class="dash-content">
+        <!-- Header avec bouton nouveau contrat -->
+        <div class="contrats-header">
+          <div class="header-content">
+            <div class="header-text">
+              <h2>Gestion des Contrats</h2>
+              <p>Créez et gérez vos contrats de culture hydroponique</p>
+            </div>
+            <button class="btn primary" id="nouveauContratBtn">
+              <span class="btn-icon">+</span>
+              Nouveau Contrat
+            </button>
+          </div>
+          
+          <div class="stats-rapides">
+            <div class="stat-rapide">
+              <div class="stat-number" id="contratsActifs">0</div>
+              <div class="stat-label">Contrats actifs</div>
+            </div>
+            <div class="stat-rapide">
+              <div class="stat-number" id="plantsTotal">0</div>
+              <div class="stat-label">Plants en culture</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulaire de création de contrat (caché par défaut) -->
+        <div id="formulaireContrat" class="formulaire-contrat hidden">
+          <div class="form-header">
+            <h3>Nouveau Contrat</h3>
+            <button class="btn ghost" id="fermerFormulaire">✕</button>
+          </div>
+          <form id="contratForm" class="form-contrat">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="plante">Type de Plante *</label>
+                <select id="plante" name="plante" required>
+                  <option value="">Sélectionnez une plante</option>
+                  <option value="basilic">Basilic</option>
+                  <option value="laitue">Laitue</option>
+                  <option value="tomate">Tomate</option>
+                  <option value="fraisier">Fraisier</option>
+                  <option value="concombre">Concombre</option>
+                  <option value="poivron">Poivron</option>
+                  <option value="epinard">Épinard</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="quantite">Quantité Demandée *</label>
+                <input type="number" id="quantite" name="quantite" min="1" required placeholder="ex: 300">
+              </div>
+
+              <div class="form-group">
+                <label for="dateLivraison">Date de Livraison *</label>
+                <input type="date" id="dateLivraison" name="dateLivraison" required>
+              </div>
+
+              <div class="form-group">
+                <label for="systemesHydroponiques">Nombre de Systèmes</label>
+                <input type="number" id="systemesHydroponiques" name="systemesHydroponiques" value="1" min="1">
+              </div>
+
+              <div class="form-group full-width">
+                <label for="agriculteur">Nom de l'Agriculteur</label>
+                <input type="text" id="agriculteur" name="agriculteur" value="Agriculteur Principal">
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn secondary" id="annulerContrat">Annuler</button>
+              <button type="submit" class="btn primary">
+                <span class="btn-icon">📅</span>
+                Générer le Planning
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Liste des contrats -->
+        <div class="contrats-liste" id="contratsListe">
+          <div class="loading-state" id="loadingContrats">
+            <div class="spinner"></div>
+            <p>Chargement des contrats...</p>
+          </div>
+          <!-- Les contrats seront injectés ici par JavaScript -->
+        </div>
+
+        <!-- Détails d'un contrat (caché par défaut) -->
+        <div id="detailsContrat" class="details-contrat hidden">
+          <!-- Les détails seront injectés ici par JavaScript -->
+        </div>
+      </section>
+
+      <footer class="dash-footer">
+        <div class="footer-content">
+          <span>© <span id="yearContrats"></span> HydroCare • Gestion des Contrats</span>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Modal de confirmation -->
+  <div id="confirmationModal" class="modal hidden">
+    <div class="modal-content">
+      <h3 id="modalTitre">Confirmation</h3>
+      <p id="modalMessage">Êtes-vous sûr de vouloir effectuer cette action ?</p>
+      <div class="modal-actions">
+        <button class="btn secondary" id="modalAnnuler">Annuler</button>
+        <button class="btn primary" id="modalConfirmer">Confirmer</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('yearContrats').textContent = new Date().getFullYear();
+    
+    // Récupération du nom d'utilisateur
+    const username = localStorage.getItem('hydrocare_user') || 'Utilisateur';
+    document.getElementById('userBadge').querySelector('.user-name').textContent = username;
+  </script>
+</body>
+</html>

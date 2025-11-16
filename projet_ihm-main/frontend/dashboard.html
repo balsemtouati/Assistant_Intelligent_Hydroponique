@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HydroCare | Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashborad.css" />
+  <script defer src="js/dashboard.js"></script>
+</head>
+<body class="dash-body">
+  <div class="dash-layout">
+    <!-- Sidebar -->
+    <aside class="dash-sidebar" aria-label="Navigation tableau de bord">
+      <div class="brand">
+        <div class="brand-icon">🌱</div>
+        <span class="brand-text">HydroCare</span>
+      </div>
+      <nav class="dash-nav">
+        <ul>
+          <li><a href="dashboard.html" data-view="home" class="active">📊 Dashboard</a></li>
+          <li><a href="contrats.html" data-view="contrats">📄 Contrats</a></li>
+          <li><a href="parametres.html" data-view="parametres">⚙️ Paramètres</a></li>
+          <li><a href="chat.html" data-view="chatbot">💬 Assistant </a></li>
+          <li><a href="detection.html" class="active">🩺 Détection</a></li>
+        </ul>
+      </nav>
+      <button id="logoutBtn" class="logout-btn" aria-label="Déconnexion">
+        <span class="logout-icon">⏻</span>
+        <span class="logout-text">Déconnexion</span>
+      </button>
+    </aside>
+
+    <!-- Contenu principal -->
+    <main class="dash-main" id="dashMain" tabindex="-1">
+      <header class="dash-topbar">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Afficher / masquer menu">
+          <span class="toggle-bar"></span>
+          <span class="toggle-bar"></span>
+          <span class="toggle-bar"></span>
+        </button>
+        <h1 class="dash-title" id="viewTitle">Tableau de bord</h1>
+        <div class="user-badge" id="userBadge">
+          <span class="user-avatar">👤</span>
+          <span class="user-name"></span>
+        </div>
+      </header>
+
+      <section class="dash-content" id="viewContent">
+        <!-- Vue Dashboard -->
+        <div class="dashboard-view" data-view="home">
+          <!-- Section de bienvenue simple -->
+          <div class="welcome-section">
+            <h2>Bonjour, <span id="userGreeting" class="username-highlight">benhendaimen10</span> !</h2>
+            <p class="welcome-subtitle">Voici l'aperçu de votre système hydroponique</p>
+          </div>
+
+          <!-- Statistiques principales simplifiées -->
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-icon">📡</div>
+              <div class="stat-content">
+                <div class="stat-value" id="sensorsCount">12</div>
+                <div class="stat-label">Capteurs actifs</div>
+                <div class="stat-trend positive">+2</div>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon">🌿</div>
+              <div class="stat-content">
+                <div class="stat-value" id="plantsCount">36</div>
+                <div class="stat-label">Plantes suivies</div>
+                <div class="stat-trend positive">+5</div>
+              </div>
+            </div>
+
+            <div class="stat-item alert">
+              <div class="stat-icon">⚠️</div>
+              <div class="stat-content">
+                <div class="stat-value warn" id="humidityAlert">2</div>
+                <div class="stat-label">Alertes humidité</div>
+                <div class="stat-badge attention">Attention</div>
+              </div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon">✅</div>
+              <div class="stat-content">
+                <div class="stat-value ok" id="incidentsCount">0</div>
+                <div class="stat-label">Incidents</div>
+                <div class="stat-badge stable">Stable</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section unique pour activité récente -->
+          <div class="recent-activity">
+            <h3>Activité récente</h3>
+            <div class="activity-list">
+              <div class="activity-item">
+                <div class="activity-dot"></div>
+                <div class="activity-content">
+                  <p><strong>Niveau d'eau ajusté</strong> - Serre A</p>
+                  <span class="activity-time">Il y a 5 minutes</span>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot"></div>
+                <div class="activity-content">
+                  <p><strong>Température optimisée</strong> - 22°C</p>
+                  <span class="activity-time">Il y a 15 minutes</span>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot"></div>
+                <div class="activity-content">
+                  <p><strong>Rapport quotidien généré</strong></p>
+                  <span class="activity-time">Il y a 1 heure</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Redirection Contrats -->
+        <div class="redirect-view hidden" data-view="contrats">
+          <div class="redirect-container">
+            <div class="redirect-icon">📄</div>
+            <h2>Gestion des Contrats</h2>
+            <p>Redirection vers la page des contrats...</p>
+            <div class="spinner"></div>
+            <p class="redirect-fallback">Si la redirection ne fonctionne pas, <a href="contrats.html">cliquez ici</a></p>
+          </div>
+        </div>
+
+        <!-- Placeholder pour autres vues -->
+        <div class="placeholder-view hidden" data-view="parametres">
+          <div class="placeholder-content">
+            <h2>Paramètres</h2>
+            <p>Configuration du système et préférences utilisateur.</p>
+          </div>
+        </div>
+
+        <div class="placeholder-view hidden" data-view="diseases">
+          <div class="placeholder-content">
+            <h2>Détection de maladie</h2>
+            <p>Uploader une photo de plante pour analyse.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="dash-footer">
+        <div class="footer-content">
+          <span>© <span id="yearDash"></span> HydroCare • Interface démo</span>
+        </div>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+# Root ignores for the monorepo
+
+# Python virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Environment files / secrets
+.env
+*.env
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Node (if added later)
+node_modules/
+
+# Vector DB / indices (do not version)
+projet_ihm-main/rag-example-main/doc_index/
+projet_ihm-main/rag-example-main/chroma/
+projet_ihm-main/rag-example-main/chroma_db/
+
+# Large model files (use Git LFS if needed)
+Projet-Deep-Learning-Reconnaissance-de-maladies-des-plantes-main/Projet-Deep-Learning-Reconnaissance-de-maladies-des-plantes-main/plant_disease_model.keras
+Projet-Deep-Learning-Reconnaissance-de-maladies-des-plantes-main/Projet-Deep-Learning-Reconnaissance-de-maladies-des-plantes-main/frontend/plant_disease_model.keras

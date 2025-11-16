@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HydroCare | Suivi des Paramètres</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashborad.css" />
+  <link rel="stylesheet" href="css/parametres.css" />
+  <script defer src="js/parametres.js"></script>
+</head>
+<body class="dash-body">
+  <div class="dash-layout">
+    <!-- Sidebar (identique à dashboard) -->
+    <aside class="dash-sidebar" aria-label="Navigation tableau de bord">
+      <div class="brand">
+        <div class="brand-icon">🌱</div>
+        <span class="brand-text">HydroCare</span>
+      </div>
+      <nav class="dash-nav">
+        <ul>
+          <li><a href="dashboard.html">📊 Dashboard</a></li>
+          <li><a href="contrats.html">📄 Contrats</a></li>
+          <li><a href="parametres.html" class="active">⚙️ Paramètres</a></li>
+          <li><a href="chat.html">💬 Assistant</a></li>
+          <li><a href="detection.html" class="active">🩺 Détection</a></li>
+        </ul>
+      </nav>
+      <button id="logoutBtn" class="logout-btn" aria-label="Déconnexion">
+        <span class="logout-icon">⏻</span>
+        <span class="logout-text">Déconnexion</span>
+      </button>
+    </aside>
+
+    <!-- Contenu principal -->
+    <main class="dash-main" id="dashMain" tabindex="-1">
+      <header class="dash-topbar">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Afficher / masquer menu">
+          <span class="toggle-bar"></span>
+          <span class="toggle-bar"></span>
+          <span class="toggle-bar"></span>
+        </button>
+        <h1 class="dash-title">Suivi des Paramètres Hydroponiques</h1>
+        <div class="user-badge" id="userBadge">
+          <span class="user-avatar">👤</span>
+          <span class="user-name"></span>
+        </div>
+      </header>
+
+      <section class="dash-content">
+        <!-- Header avec bouton nouvelle mesure -->
+        <div class="parametres-header">
+          <div class="header-content">
+            <div class="header-text">
+              <h2>Suivi des Paramètres</h2>
+              <p>Analysez et optimisez les paramètres de vos systèmes hydroponiques</p>
+            </div>
+            <button class="btn primary" id="nouvelleMesureBtn">
+              <span class="btn-icon">+</span>
+              Nouvelle Mesure
+            </button>
+          </div>
+          
+          <div class="stats-rapides">
+            <div class="stat-rapide">
+              <div class="stat-number" id="mesuresTotal">0</div>
+              <div class="stat-label">Mesures</div>
+            </div>
+            <div class="stat-rapide">
+              <div class="stat-number" id="alertesActives">0</div>
+              <div class="stat-label">Alertes</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulaire de saisie des paramètres -->
+        <div id="formulaireMesure" class="formulaire-mesure hidden">
+          <div class="form-header">
+            <h3>Nouvelle Mesure des Paramètres</h3>
+            <button class="btn ghost" id="fermerFormulaire">✕</button>
+          </div>
+          <form id="mesureForm" class="form-mesure">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="systemeNom">Nom du Système *</label>
+                <input type="text" id="systemeNom" name="systemeNom" required placeholder="ex: Serre Nord">
+              </div>
+
+              <div class="form-group">
+                <label for="planteType">Type de Plante *</label>
+                <select id="planteType" name="planteType" required>
+                  <option value="">Sélectionnez une plante</option>
+                  <option value="basilic">Basilic</option>
+                  <option value="laitue">Laitue</option>
+                  <option value="tomate">Tomate</option>
+                  <option value="fraisier">Fraisier</option>
+                  <option value="concombre">Concombre</option>
+                  <option value="poivron">Poivron</option>
+                  <option value="epinard">Épinard</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="tailleBac">Taille du Bac (Litres) *</label>
+                <input type="number" id="tailleBac" name="tailleBac" min="1" required placeholder="ex: 200">
+              </div>
+
+              <div class="form-group">
+                <label for="nombrePlantes">Nombre de Plantes *</label>
+                <input type="number" id="nombrePlantes" name="nombrePlantes" min="1" required placeholder="ex: 50">
+              </div>
+
+              <div class="form-group">
+                <label for="phMesure">pH Mesuré *</label>
+                <div class="input-with-unit">
+                  <input type="number" id="phMesure" name="phMesure" step="0.1" min="0" max="14" required placeholder="ex: 6.2">
+                  <span class="unit">pH</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="oxygeneMesure">Oxygène Dissous *</label>
+                <div class="input-with-unit">
+                  <input type="number" id="oxygeneMesure" name="oxygeneMesure" step="0.1" min="0" required placeholder="ex: 5.5">
+                  <span class="unit">mg/L</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="temperatureEau">Température de l'Eau *</label>
+                <div class="input-with-unit">
+                  <input type="number" id="temperatureEau" name="temperatureEau" step="0.1" required placeholder="ex: 22.5">
+                  <span class="unit">°C</span>
+                </div>
+              </div>
+
+              <div class="form-group full-width">
+                <label for="notes">Notes (optionnel)</label>
+                <textarea id="notes" name="notes" rows="3" placeholder="Observations particulières..."></textarea>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn secondary" id="annulerMesure">Annuler</button>
+              <button type="submit" class="btn primary">
+                <span class="btn-icon">🔍</span>
+                Analyser les Paramètres
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Résultats de l'analyse -->
+        <div id="resultatsAnalyse" class="resultats-analyse hidden">
+          <div class="analyse-header">
+            <h3>Résultats de l'Analyse</h3>
+            <button class="btn ghost" id="fermerResultats">✕</button>
+          </div>
+          
+          <div class="analyse-content">
+            <div id="alertesContainer" class="alertes-container">
+              <!-- Alertes générées dynamiquement -->
+            </div>
+            
+            <div id="recommandationsContainer" class="recommandations-container">
+              <!-- Recommandations générées dynamiquement -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Historique des mesures -->
+        <div class="historique-section">
+          <div class="section-header">
+            <h3>Historique des Mesures</h3>
+            <button class="btn ghost" id="rafraichirHistorique">
+              <span class="btn-icon">🔄</span>
+              Actualiser
+            </button>
+          </div>
+          
+          <div class="historique-filtres">
+            <select id="filtreSysteme">
+              <option value="">Tous les systèmes</option>
+            </select>
+            <select id="filtrePlante">
+              <option value="">Toutes les plantes</option>
+              <option value="basilic">Basilic</option>
+              <option value="laitue">Laitue</option>
+              <option value="tomate">Tomate</option>
+              <option value="fraisier">Fraisier</option>
+              <option value="concombre">Concombre</option>
+              <option value="poivron">Poivron</option>
+              <option value="epinard">Épinard</option>
+            </select>
+          </div>
+          
+          <div id="historiqueMesures" class="historique-mesures">
+            <div class="loading-state">
+              <div class="spinner"></div>
+              <p>Chargement de l'historique...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="dash-footer">
+        <div class="footer-content">
+          <span>© <span id="yearParametres"></span> HydroCare • Suivi des Paramètres</span>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Modal de confirmation -->
+  <div id="confirmationModal" class="modal hidden">
+    <div class="modal-content">
+      <h3 id="modalTitre">Confirmation</h3>
+      <p id="modalMessage">Êtes-vous sûr de vouloir supprimer cette mesure ?</p>
+      <div class="modal-actions">
+        <button class="btn secondary" id="modalAnnuler">Annuler</button>
+        <button class="btn primary" id="modalConfirmer">Confirmer</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('yearParametres').textContent = new Date().getFullYear();
+    
+    // Récupération du nom d'utilisateur
+    const username = localStorage.getItem('hydrocare_user') || 'Utilisateur';
+    document.getElementById('userBadge').querySelector('.user-name').textContent = username;
+  </script>
+</body>
+</html>

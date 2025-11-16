@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HydroCare | Chatbot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashborad.css" />
+  <link rel="stylesheet" href="css/chat.css" />
+  <script>window.HC_API_BASE = "http://127.0.0.1:8001";</script>
+  <script defer src="js/chat.js"></script>
+</head>
+<body class="dash-body">
+  <div class="dash-layout">
+    <!-- Sidebar (identique à dashboard) -->
+    <aside class="dash-sidebar" aria-label="Navigation tableau de bord">
+      <div class="brand">
+        <div class="brand-icon">🌱</div>
+        <span class="brand-text">HydroCare</span>
+      </div>
+      <nav class="dash-nav">
+        <ul>
+          <li><a href="dashboard.html">📊 Dashboard</a></li>
+          <li><a href="contrats.html">📄 Contrats</a></li>
+          <li><a href="parametres.html">⚙️ Paramètres</a></li>
+          <li><a href="chat.html" class="active">💬 Assistant </a></li>
+          <li><a href="detection.html" class="active">🩺 Détection</a></li>
+        </ul>
+      </nav>
+      <button id="logoutBtn" class="logout-btn" aria-label="Déconnexion">
+        <span class="logout-icon">⏻</span>
+        <span class="logout-text">Déconnexion</span>
+      </button>
+    </aside>
+
+    <!-- Contenu principal -->
+    <main class="dash-main" id="dashMain" tabindex="-1">
+      <header class="dash-topbar">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Afficher / masquer menu">
+          <span class="toggle-bar"></span>
+          <span class="toggle-bar"></span>
+          <span class="toggle-bar"></span>
+        </button>
+        <h1 class="dash-title">Assistant HydroCare</h1>
+        <div class="user-badge" id="userBadge">
+          <span class="user-avatar">👤</span>
+          <span class="user-name"></span>
+        </div>
+      </header>
+
+      <section class="dash-content chat-content">
+        <!-- En-tête du chatbot -->
+        <div class="chat-header">
+          <div class="chat-welcome">
+            <h2>Assistant Hydroponique</h2>
+            <p>Posez vos questions sur la culture hydroponique, les paramètres, les problèmes de plantes...</p>
+          </div>
+          <button id="resetSession" class="btn secondary" title="Réinitialiser la conversation">
+            <span class="btn-icon">🔄</span>
+            Nouvelle conversation
+          </button>
+        </div>
+
+        <!-- Zone de conversation -->
+<div class="chat-container">
+  <!-- Petit message de bienvenue centré -->
+  <div class="mini-welcome">
+    <div class="mini-welcome-content">
+      <span class="mini-welcome-icon">🌱</span>
+      <span class="mini-welcome-text">Bonjour ! Comment puis-je vous aider aujourd'hui ?</span>
+    </div>
+  </div>
+
+  <!-- Zone de messages -->
+  <div id="chatBox" class="chat-box" aria-live="polite" aria-label="Messages du chatbot">
+    <!-- Les messages apparaîtront ici -->
+  </div>
+
+  <!-- Formulaire d'envoi (en bas) -->
+  <form id="chatForm" class="chat-form" autocomplete="off">
+    <div class="chat-input-container">
+      <input id="chatInput" type="text" placeholder="Posez votre question sur l'hydroponie..." aria-label="Votre message" required />
+      <button type="submit" class="btn primary chat-send-btn">
+        <span class="btn-icon">📤</span>
+        Envoyer
+      </button>
+    </div>
+    <div class="chat-suggestions">
+      <span class="suggestions-label">Suggestions :</span>
+      <button type="button" class="suggestion-btn" data-question="Quel est le pH optimal pour les tomates ?">
+        pH optimal tomates
+      </button>
+      <button type="button" class="suggestion-btn" data-question="Comment régler l'EC pour la laitue ?">
+        EC pour laitue
+      </button>
+      <button type="button" class="suggestion-btn" data-question="Problèmes de feuilles jaunes ?">
+        Feuilles jaunes
+      </button>
+    </div>
+  </form>
+</div>
+      <footer class="dash-footer">
+        <div class="footer-content">
+          <span>© <span id="yearChat"></span> HydroCare • Assistant de culture hydroponique</span>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('yearChat').textContent = new Date().getFullYear();
+    document.getElementById('welcomeTime').textContent = new Date().toLocaleTimeString('fr-FR', { 
+      hour: '2-digit', minute: '2-digit' 
+    });
+    
+    // Récupération du nom d'utilisateur
+    const username = localStorage.getItem('hydrocare_user') || 'Utilisateur';
+    document.getElementById('userBadge').querySelector('.user-name').textContent = username;
+  </script>
+</body>
+</html>

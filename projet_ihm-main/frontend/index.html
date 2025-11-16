@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HydroCare - Assistant Hydroponique Intelligent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <!-- Overlay sombre quand la modal est ouverte -->
+  <div id="overlay" class="overlay hidden" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <div class="logo">
+        <span class="logo-icon">🌱</span>
+        HydroCare
+      </div>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <ul>
+          <li><a href="#hero">Accueil</a></li>
+          <li><a href="#features">Fonctionnalités</a></li>
+          <li><a href="#about">À propos</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button id="openLogin" class="btn outline" aria-haspopup="dialog" aria-controls="authModal">
+        <span class="btn-icon">🔐</span>
+        Connexion
+      </button>
+      <button id="burger" class="burger" aria-label="Menu mobile" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav id="mobileMenu" class="mobile-nav" aria-label="Navigation mobile" hidden>
+      <ul>
+        <li><a href="#hero">Accueil</a></li>
+        <li><a href="#features">Fonctionnalités</a></li>
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><button id="openLoginMobile" class="btn outline small">
+          <span class="btn-icon">🔐</span>
+          Connexion
+        </button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero" role="banner" aria-label="Présentation principale">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            <span class="title-accent">HydroCare</span>
+            Votre Expert en Culture Hydroponique
+          </h1>
+          <p class="hero-description">
+            De la graine à la récolte, notre plateforme intelligente vous guide pas à pas 
+            pour <strong>maximiser vos rendements</strong> et <strong>optimiser vos cultures</strong> 
+            grâce à l'analyse de données en temps réel.
+          </p>
+          <div class="hero-actions">
+            <button class="btn primary large" id="ctaRegister">
+              <span class="btn-icon">🚀</span>
+              Démarrer gratuitement
+            </button>
+            <button class="btn outline large" onclick="scrollToSection('features')">
+              <span class="btn-icon">🔍</span>
+              Découvrir les fonctionnalités
+            </button>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-number">500+</span>
+              <span class="stat-label">Agriculteurs</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">95%</span>
+              <span class="stat-label">Succès Culture</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">24/7</span>
+              <span class="stat-label">Support</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section features" aria-label="Fonctionnalités principales">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Fonctionnalités Intelligentes</h2>
+          <p class="section-subtitle">
+            Une suite complète d'outils conçus pour les professionnels de l'hydroponie
+          </p>
+        </div>
+        
+        <div class="features-grid">
+          <article class="feature-card" data-aos="fade-up">
+            <div class="feature-icon">📅</div>
+            <h3 class="feature-title">Gestion de Contrats</h3>
+            <p class="feature-description">
+              Planification automatique et suivi des cultures avec génération 
+              intelligente de plannings hebdomadaires.
+            </p>
+            <ul class="feature-list">
+              <li>✅ Calcul automatique des dates de semis</li>
+              <li>✅ Planning des tâches hebdomadaires</li>
+              <li>✅ Gestion des nutriments</li>
+            </ul>
+          </article>
+
+          <article class="feature-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-icon">🌡️</div>
+            <h3 class="feature-title">Suivi des Paramètres</h3>
+            <p class="feature-description">
+              Surveillance en temps réel et analyse intelligente des paramètres 
+              critiques de vos systèmes hydroponiques.
+            </p>
+            <ul class="feature-list">
+              <li>✅ Analyse du pH et EC</li>
+              <li>✅ Contrôle de la température</li>
+              <li>✅ Alertes automatiques</li>
+            </ul>
+          </article>
+
+          <article class="feature-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-icon">🔍</div>
+            <h3 class="feature-title">Détection de Maladies</h3>
+            <p class="feature-description">
+              Diagnostic précoce des problèmes grâce à l'analyse d'images 
+              et l'intelligence artificielle.
+            </p>
+            <ul class="feature-list">
+              <li>✅ Analyse par photo</li>
+              <li>✅ Diagnostic automatique</li>
+              <li>✅ Recommandations de traitement</li>
+            </ul>
+          </article>
+
+          <article class="feature-card" data-aos="fade-up" data-aos-delay="300">
+  <div class="feature-icon">🤖</div>
+  <h3 class="feature-title">Assistant IA</h3>
+  <p class="feature-description">
+    Obtenez des réponses instantanées à vos questions sur l'hydroponie 
+    grâce à notre chatbot intelligent spécialisé.
+  </p>
+  <ul class="feature-list">
+    <li>✅ Réponses en temps réel</li>
+    <li>✅ Conseils personnalisés</li>
+    <li>✅ Support 24h/24</li>
+    <li>✅ Expertise hydroponique</li>
+  </ul>
+</article>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <!-- About Section -->
+<section id="about" class="section about" aria-label="À propos de HydroCare">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Expertise Scientifique et Innovation Technologique</h2>
+      <p class="section-subtitle">
+        Combinaison parfaite entre agronomie traditionnelle et technologies modernes
+      </p>
+    </div>
+    
+    <div class="about-features-grid">
+      <div class="about-feature-card">
+        <div class="feature-badge">🔬</div>
+        <div class="feature-text">
+          <h4>Basé sur la Recherche</h4>
+          <p>Algorithmes validés par des agronomes et chercheurs en hydroponie. Notre système s'appuie sur des données scientifiques éprouvées pour optimiser vos cultures.</p>
+        </div>
+      </div>
+      
+      <div class="about-feature-card">
+        <div class="feature-badge">⚡</div>
+        <div class="feature-text">
+          <h4>Rapide et Efficace</h4>
+          <p>Interface intuitive conçue pour gagner du temps au quotidien. Automatisez vos tâches et concentrez-vous sur l'essentiel.</p>
+        </div>
+      </div>
+      
+  
+
+      <div class="about-feature-card">
+        <div class="feature-badge">🤝</div>
+        <div class="feature-text">
+          <h4>Support Expert</h4>
+          <p>Équipe d'experts disponible pour vous accompagner dans votre transition vers l'hydroponie de précision.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="about-cta-centered">
+      <button class="btn primary large" onclick="openModal('register')">
+        <span class="btn-icon">🌱</span>
+        Rejoindre la communauté HydroCare
+      </button>
+      <p class="cta-subtitle">
+        Déjà <strong>500+</strong> agriculteurs nous font confiance
+      </p>
+    </div>
+  </div>
+</section>
+
+    <!-- Contact Section -->
+<section id="contact" class="section contact" aria-label="Contactez-nous">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Nous Contacter</h2>
+      <p class="section-subtitle">
+        Une question sur HydroCare ? Notre équipe d'experts en hydroponie est à votre écoute
+      </p>
+    </div>
+    
+    <div class="contact-simple">
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div class="contact-content">
+            <h3>Email</h3>
+            <p>contact@hydrocare.tech</p>
+            <span class="contact-note">Réponse sous 24h ouvrés</span>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-content">
+            <h3>Téléphone</h3>
+            <p>+33 4 28 37 15 42</p>
+            <span class="contact-note">Lun-Ven • 8h-18h</span>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">💬</div>
+          <div class="contact-content">
+            <h3>Chat en Direct</h3>
+            <p>Disponible sur votre espace</p>
+            <span class="contact-note">Assistant IA 24h/24</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-action">
+        <div class="action-card">
+          <h3>Essai Gratuit</h3>
+          <p>Testez HydroCare sans engagement</p>
+          <button class="btn primary large" onclick="openModal('register')">
+            <span class="btn-icon">🚀</span>
+            Démarrer maintenant
+          </button>
+          <div class="action-features">
+            <div class="feature">
+            
+              <span>✅ 14 jours d'essai</span>
+            </div>
+            <div class="feature">
+              
+              <span>✅ Support inclus</span>
+            </div>
+            <div class="feature">
+          
+              <span>✅ Sans carte bancaire</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo">
+            <span class="logo-icon">🌱</span>
+            HydroCare
+          </div>
+          <p class="footer-description">
+            Votre partenaire intelligent pour une hydroponie réussie et productive.
+          </p>
+          <!-- Ajoutez dans le <head> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Puis remplacez les icônes -->
+<div class="social-links">
+  <a href="#" aria-label="Facebook" class="social-link" title="Suivez-nous sur Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+  <a href="#" aria-label="Twitter" class="social-link" title="Suivez-nous sur Twitter">
+    <i class="fab fa-twitter"></i>
+  </a>
+  <a href="#" aria-label="Instagram" class="social-link" title="Suivez-nous sur Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+  <a href="#" aria-label="LinkedIn" class="social-link" title="Suivez-nous sur LinkedIn">
+    <i class="fab fa-linkedin-in"></i>
+  </a>
+</div>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4>Produit</h4>
+            <ul>
+              <li><a href="#features">Fonctionnalités</a></li>
+              <li><a href="#about">À propos</a></li>
+              <li><a href="#">Tarifs</a></li>
+              <li><a href="#">Témoignages</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-column">
+            <h4>Ressources</h4>
+            <ul>
+              <li><a href="#">Documentation</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Guides</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-column">
+            <h4>Entreprise</h4>
+            <ul>
+              <li><a href="#">Équipe</a></li>
+              <li><a href="#">Carrières</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Presse</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-column">
+            <h4>Légal</h4>
+            <ul>
+              <li><a href="#">Mentions légales</a></li>
+              <li><a href="#">Confidentialité</a></li>
+              <li><a href="#">CGU</a></li>
+              <li><a href="#">Cookies</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="copyright">© <span id="year"></span> HydroCare. Tous droits réservés.</p>
+        <p class="footer-note">🌍 Cultivons un avenir plus vert ensemble</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Auth (identique mais amélioré) -->
+  <dialog id="authModal" class="auth-modal" aria-labelledby="authTitle" aria-describedby="authDesc">
+    <button class="close-btn" aria-label="Fermer la fenêtre de connexion" data-close>&times;</button>
+    <h2 id="authTitle" class="modal-title" data-mode="register">Créer un compte</h2>
+    <p id="authDesc" class="sr-only">Formulaire d'authentification HydroCare</p>
+
+    <!-- Onglets -->
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="register" role="tab" aria-selected="true" aria-controls="formRegister">
+        <span class="tab-icon">👤</span>
+        Inscription
+      </button>
+      <button class="tab" data-tab="login" role="tab" aria-selected="false" aria-controls="formLogin">
+        <span class="tab-icon">🔐</span>
+        Connexion
+      </button>
+    </div>
+
+    <!-- Form Register -->
+    <form id="formRegister" class="form active" autocomplete="on" novalidate aria-labelledby="authTitle">
+      <div class="form-header">
+        <p class="form-subtitle">Rejoignez notre communauté d'experts en hydroponie</p>
+      </div>
+      
+      <label class="field">
+        <span>Nom d'utilisateur *</span>
+        <div class="input-wrap">
+          <input type="text" name="username" required minlength="3" 
+                 placeholder="Votre pseudo professionnel" 
+                 aria-describedby="username-help" />
+          <span class="icon">👤</span>
+        </div>
+        <small class="help" id="username-help">Minimum 3 caractères</small>
+        <small class="error" data-error-for="username" aria-live="polite"></small>
+      </label>
+      
+      <label class="field">
+        <span>Adresse email *</span>
+        <div class="input-wrap">
+          <input type="email" name="email" required 
+                 placeholder="vous@votre-entreprise.com" 
+                 aria-describedby="email-help" />
+          <span class="icon">✉️</span>
+        </div>
+        <small class="help" id="email-help">Nous ne partagerons jamais votre email</small>
+        <small class="error" data-error-for="email" aria-live="polite"></small>
+      </label>
+      
+      <label class="field">
+        <span>Mot de passe *</span>
+        <div class="input-wrap">
+          <input type="password" name="password" required minlength="6" 
+                 placeholder="Créez un mot de passe sécurisé" 
+                 aria-describedby="password-help" />
+          <button type="button" class="reveal" aria-label="Afficher le mot de passe">👁️</button>
+          <span class="icon">🔒</span>
+        </div>
+        <small class="help" id="password-help">Minimum 6 caractères</small>
+        <small class="error" data-error-for="password" aria-live="polite"></small>
+      </label>
+      
+      <div class="form-row between">
+        <label class="checkbox">
+          <input type="checkbox" name="terms" required aria-describedby="terms-help" />
+          <span>J'accepte les <a href="#" class="link">conditions d'utilisation</a></span>
+        </label>
+      </div>
+      <small class="help" id="terms-help" style="margin-top: -0.5rem; margin-bottom: 1rem;">
+        Vous devez accepter les conditions pour continuer
+      </small>
+      
+      <button class="btn primary block" type="submit">
+        <span class="btn-icon">🚀</span>
+        Créer mon compte professionnel
+      </button>
+      
+      <p class="switch-msg">
+        Déjà membre ? 
+        <button type="button" class="link-inline" data-switch="login" aria-label="Passer à la connexion">
+          Connectez-vous ici
+        </button>
+      </p>
+    </form>
+
+    <!-- Form Login -->
+    <form id="formLogin" class="form" autocomplete="on" novalidate aria-labelledby="authTitle">
+      <div class="form-header">
+        <p class="form-subtitle">Content de vous revoir ! Accédez à votre espace personnel</p>
+      </div>
+      
+      <label class="field">
+        <span>Adresse email *</span>
+        <div class="input-wrap">
+          <input type="email" name="email" required placeholder="vous@votre-entreprise.com" />
+          <span class="icon">✉️</span>
+        </div>
+        <small class="error" data-error-for="login-email" aria-live="polite"></small>
+      </label>
+      
+      <label class="field">
+        <span>Mot de passe *</span>
+        <div class="input-wrap">
+          <input type="password" name="password" required minlength="6" placeholder="Votre mot de passe" />
+          <button type="button" class="reveal" aria-label="Afficher le mot de passe">👁️</button>
+          <span class="icon">🔒</span>
+        </div>
+        <small class="error" data-error-for="login-password" aria-live="polite"></small>
+      </label>
+      
+      <div class="form-row between">
+        <label class="checkbox">
+          <input type="checkbox" name="remember" />
+          <span>Se souvenir de moi</span>
+        </label>
+        <a href="#" class="link-muted small">Mot de passe oublié ?</a>
+      </div>
+      
+      <button class="btn primary block" type="submit">
+        <span class="btn-icon">🔐</span>
+        Se connecter
+      </button>
+      
+      <p class="switch-msg">
+        Nouveau sur HydroCare ? 
+        <button type="button" class="link-inline" data-switch="register" aria-label="Passer à l'inscription">
+          Créer un compte
+        </button>
+      </p>
+    </form>
+  </dialog>
+
+  <script>
+    // Fonction pour le scroll fluide
+    function scrollToSection(sectionId) {
+      document.getElementById(sectionId)?.scrollIntoView({ 
+        behavior: 'smooth' 
+      });
+    }
+    
+    // Initialisation de l'année
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

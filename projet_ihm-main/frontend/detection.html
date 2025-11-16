@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HydroCare | Détection Maladies</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashborad.css" />
+  <link rel="stylesheet" href="css/detection.css" />
+  <!-- Base URL du backend de détection des maladies (FastAPI api.py sur port 8003) -->
+  <!-- Dans detection.html -->
+  <script>window.HC_API_BASE = "http://127.0.0.1:8003";</script>
+  <script defer src="js/detection.js"></script>
+</head>
+<body class="dash-body">
+  <div class="dash-layout">
+    <!-- Sidebar (identique à dashboard) -->
+    <aside class="dash-sidebar" aria-label="Navigation tableau de bord">
+      <div class="brand">
+        <div class="brand-icon">🌱</div>
+        <span class="brand-text">HydroCare</span>
+      </div>
+      <nav class="dash-nav">
+        <ul>
+          <li><a href="dashboard.html">📊 Dashboard</a></li>
+          <li><a href="contrats.html">📄 Contrats</a></li>
+          <li><a href="parametres.html">⚙️ Paramètres</a></li>
+          <li><a href="chat.html">💬 Assistant</a></li>
+          <li><a href="detection.html" class="active">🩺 Détection</a></li>
+        </ul>
+      </nav>
+      <button id="logoutBtn" class="logout-btn" aria-label="Déconnexion">
+        <span class="logout-icon">⏻</span>
+        <span class="logout-text">Déconnexion</span>
+      </button>
+    </aside>
+
+    <!-- Contenu principal -->
+    <main class="dash-main" id="dashMain" tabindex="-1">
+      <header class="dash-topbar">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Afficher / masquer menu">
+          <span class="toggle-bar"></span>
+          <span class="toggle-bar"></span>
+          <span class="toggle-bar"></span>
+        </button>
+        <h1 class="dash-title">Détection de Maladies</h1>
+        <div class="user-badge" id="userBadge">
+          <span class="user-avatar">👤</span>
+          <span class="user-name"></span>
+        </div>
+      </header>
+
+      <section class="dash-content detection-content">
+        <!-- En-tête -->
+        <div class="detection-header">
+          <div class="detection-welcome">
+            <h2>Diagnostic par Image</h2>
+            <p>Prenez une photo d'une feuille pour analyser les maladies potentielles</p>
+          </div>
+          <button id="historyBtn" class="btn secondary" title="Voir l'historique des analyses">
+            <span class="btn-icon">📋</span>
+            Historique
+          </button>
+        </div>
+
+        <!-- Zone principale de détection -->
+        <div class="detection-container">
+          <!-- Zone de téléchargement -->
+          <div class="upload-section">
+            <div class="upload-card">
+              <div class="upload-icon">📸</div>
+              <h3>Analyser une feuille</h3>
+              <p>Téléchargez une photo claire d'une feuille pour détecter les maladies</p>
+              
+              <div class="upload-zone" id="uploadZone">
+                <input type="file" id="imageInput" accept="image/*" capture="camera" />
+                <div class="upload-placeholder">
+                  <span class="upload-icon-large">🖼️</span>
+                  <p>Cliquez pour prendre une photo ou choisir une image</p>
+                  <span class="upload-hint">Formats supportés: JPG, PNG, WebP</span>
+                </div>
+                <div class="upload-preview" id="uploadPreview"></div>
+              </div>
+              
+              <button id="analyzeBtn" class="btn primary analyze-btn" disabled>
+                <span class="btn-icon">🔍</span>
+                Analyser l'image
+              </button>
+            </div>
+          </div>
+
+          <!-- Zone de résultats -->
+          <div class="results-section">
+            <div class="results-card">
+              <h3>Résultats de l'analyse</h3>
+              <div class="results-placeholder" id="resultsPlaceholder">
+                <div class="placeholder-content">
+                  <span class="placeholder-icon">🌿</span>
+                  <p>Les résultats d'analyse apparaîtront ici</p>
+                </div>
+              </div>
+              
+              <div class="results-content" id="resultsContent" style="display: none;">
+                <div class="diagnosis-header">
+                  <span class="diagnosis-icon" id="diagnosisIcon">✅</span>
+                  <span class="diagnosis-title" id="diagnosisTitle">Diagnostic</span>
+                </div>
+                
+                <div class="disease-info">
+                  <div class="confidence-level">
+                    <span class="confidence-label">Confiance:</span>
+                    <div class="confidence-bar">
+                      <div class="confidence-fill" id="confidenceFill"></div>
+                    </div>
+                    <span class="confidence-value" id="confidenceValue">0%</span>
+                  </div>
+                  
+                  <div class="disease-name" id="diseaseName">-</div>
+                  <div class="disease-description" id="diseaseDescription"></div>
+                </div>
+                
+                <div class="recommendations">
+                  <h4>Recommandations</h4>
+                  <div class="recommendations-list" id="recommendationsList"></div>
+                </div>
+                
+                <div class="actions">
+                  <button id="saveReportBtn" class="btn secondary">
+                    <span class="btn-icon">💾</span>
+                    Sauvegarder
+                  </button>
+                  <button id="shareBtn" class="btn secondary">
+                    <span class="btn-icon">📤</span>
+                    Partager
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section maladies courantes -->
+        <div class="common-diseases">
+          <h3>Maladies Courantes</h3>
+          <div class="diseases-grid">
+            <div class="disease-card">
+              <div class="disease-icon">🍂</div>
+              <h4>Mildiou</h4>
+              <p>Taches brunes sur les feuilles, pourriture</p>
+              <span class="disease-tag traitement">Traitement</span>
+            </div>
+            <div class="disease-card">
+              <div class="disease-icon">🟡</div>
+              <h4>Oïdium</h4>
+              <p>Poudre blanche sur les feuilles</p>
+              <span class="disease-tag prevention">Prévention</span>
+            </div>
+            <div class="disease-card">
+              <div class="disease-icon">🟫</div>
+              <h4>Pourriture racinaire</h4>
+              <p>Racines brunes et molles</p>
+              <span class="disease-tag urgence">Urgence</span>
+            </div>
+            <div class="disease-card">
+              <div class="disease-icon">🐛</div>
+              <h4>Pucerons</h4>
+              <p>Insectes verts sous les feuilles</p>
+              <span class="disease-tag traitement">Traitement</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="dash-footer">
+        <div class="footer-content">
+          <span>© <span id="yearDetection"></span> HydroCare • Détection intelligente des maladies</span>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('yearDetection').textContent = new Date().getFullYear();
+    
+    // Récupération du nom d'utilisateur
+    const username = localStorage.getItem('hydrocare_user') || 'Utilisateur';
+    document.getElementById('userBadge').querySelector('.user-name').textContent = username;
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+# Root ignores
+# Python venvs
+.venv/
+venv/
+ENV/
+env/
+
+# Environment files
+.env
+*.env
+
+# Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Node (if added later)
+node_modules/
+
+# Local data / indices (do not version vector DBs)
+rag-example-main/doc_index/
+rag-example-main/chroma/
+rag-example-main/chroma_db/
+
+# Model weights / large binaries (optional: use Git LFS instead)
+Projet-Deep-Learning-Reconnaissance-de-maladies-des-plantes-main/Projet-Deep-Learning-Reconnaissance-de-maladies-des-plantes-main/plant_disease_model.keras
+Projet-Deep-Learning-Reconnaissance-de-maladies-des-plantes-main/Projet-Deep-Learning-Reconnaissance-de-maladies-des-plantes-main/frontend/plant_disease_model.keras
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
