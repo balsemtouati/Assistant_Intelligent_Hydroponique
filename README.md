@@ -118,11 +118,8 @@ génération et l'évaluation des réponses par un LLM. Les étapes sont :
   au contexte, et peut proposer une version révisée si nécessaire.
 
 l'image illustrant ce flux est la suivante
-`rag-example-main/images/rag_data_flow_image.png`
+PipelineRAG.jpg
 
 ## Captures d'écran / Images de la plateforme
 
-- Dossier d'images : [rag-example-main/images](PipelineRAG.jpg)
-
-Pour afficher les images localement, ouvrez le dossier `rag-example-main/images` dans l'explorateur ou servez le frontend et naviguez vers la page correspondante.
 
