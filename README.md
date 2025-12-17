@@ -122,7 +122,7 @@ l'image illustrant ce flux est la suivante
 
 ## Captures d'écran / Images de la plateforme
 
-- Dossier d'images : [rag-example-main/images](projet_ihm-main\projet_ihm-main\hydroponie)
+- Dossier d'images : [rag-example-main/images](PipelineRAG.jpg)
 
 Pour afficher les images localement, ouvrez le dossier `rag-example-main/images` dans l'explorateur ou servez le frontend et naviguez vers la page correspondante.
 
